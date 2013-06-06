@@ -1,4 +1,4 @@
-require 'spec_helper'
+require './spec/spec_helper'
 
 feature 'View tasks' do
   Task.create!(name: "Go to Grocery Store", notes: "need: milk, bagels, lunch meat")
@@ -6,6 +6,7 @@ feature 'View tasks' do
 
   scenario 'user views a list of all tasks' do
     visit '/tasks'
+    expect(Task.count).to eql(2)
     expect(page).to have_content('Go to Grocery Store')
     expect(page).to have_content('Read Pragmatic Programmer')
   end
